@@ -30,3 +30,20 @@ let movieData = [
 ]
 
 
+
+let allMovies = movieData.map(movie => {
+    return `<div class='infoBox'><img src=${movie.image} /><h1>${movie.title} (${movie.releaseDate})</h1><h3>${averageReview(movie.reviewScores)}</h3><p>${movie.summary}</p></div>`
+})
+
+function averageReview(scores){
+    let sum = 0
+    
+    for(let i=0; i<scores.length; i++){
+        sum += scores[i]
+    }
+
+    let average = sum/scores.length
+    return average.toFixed(2)
+}
+
+document.getElementById('mainContent').innerHTML = allMovies.join(' ')
